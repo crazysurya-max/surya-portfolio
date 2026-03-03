@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surya | Digital Marketer</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0f0f0f;
+    color:white;
+}
+
+section{
+    padding:80px 10%;
+}
+
+h2{
+    text-align:center;
+    color:#00ffcc;
+    margin-bottom:40px;
+}
+
+/* HERO */
+header{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+header h1{
+    font-size:50px;
+}
+
+.typing{
+    color:#00ffcc;
+    font-size:22px;
+    margin:20px 0;
+}
+
+.btn{
+    padding:12px 30px;
+    background:#00ffcc;
+    color:black;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* SERVICES */
+.services{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.card{
+    background:#1a1a1a;
+    padding:30px;
+    width:280px;
+    border-radius:15px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 20px #00ffcc55;
+}
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+/* CASE STUDY */
+.case{
+    background:#1a1a1a;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+}
+
+/* CONTACT */
+form{
+    max-width:500px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input,textarea{
+    padding:12px;
+    border:none;
+    border-radius:8px;
+}
+
+textarea{
+    resize:none;
+}
+
+.social-icons{
+    text-align:center;
+    margin-top:20px;
+}
+
+.social-icons i{
+    font-size:25px;
+    margin:0 15px;
+    cursor:pointer;
+    color:#00ffcc;
+}
+
+/* WHATSAPP FLOAT */
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:15px;
+    border-radius:50%;
+    font-size:25px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    background:#111;
+    margin-top:50px;
+    color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Hi, I'm Surya</h1>
+    <div class="typing" id="typing"></div>
+    <a href="#contact"><button class="btn">Hire Me</button></a>
+</header>
+
+<section>
+    <h2>My Services</h2>
+    <div class="services">
+        <div class="card">
+            <h3>Poster Design</h3>
+            <p>Creative social media & business posters.</p>
+        </div>
+        <div class="card">
+            <h3>Video Editing</h3>
+            <p>Professional reels & ad video editing.</p>
+        </div>
+        <div class="card">
+            <h3>Facebook Ads</h3>
+            <p>Lead generation & sales campaigns.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Portfolio Gallery</h2>
+    <div class="gallery">
+    <img src="images/design1.jpg" alt="Poster Design 1">
+    <img src="images/design2.jpg" alt="Poster Design 2">
+    <img src="images/design3.jpg" alt="Poster Design 3">
+    <img src="images/design4.jpg" alt="Poster Design 4">
+    <img src="images/design5.jpg" alt="Thumbnail">
+    <img src="images/design6.jpg" alt="Vlog Video">
+    <img src="images/design7.jpg" alt="Video Edits">
+    <img src="images/design8.jpg" alt="Certificate">
+    <img src="images/design9.jpg" alt="Facebook Ads Creative">
+</div>
+</section>
+
+<section>
+    <h2>Facebook Ads Case Study</h2>
+    <div class="case">
+        <p><strong>Client:</strong> Local Business</p>
+        <p><strong>Budget:</strong> ₹5,000</p>
+        <p><strong>Results:</strong> 120 Leads in 7 Days</p>
+        <p><strong>Cost Per Lead:</strong> ₹41</p>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+
+    <!-- Replace YOUR_FORM_ID with your Formspree ID -->
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button class="btn" type="submit">Send Message</button>
+    </form>
+
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+</section>
+
+<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<footer>
+© 2026 Surya | Digital Marketer
+</footer>
+
+<script>
+// Typing Effect
+const textArray = ["Digital Marketer", "Poster Designer", "Video Editor", "Facebook Ads Specialist"];
+let index = 0;
+let charIndex = 0;
+let currentText = "";
+let isDeleting = false;
+
+function typeEffect() {
+    if (index >= textArray.length) index = 0;
+    currentText = textArray[index];
+
+    if (!isDeleting) {
+        document.getElementById("typing").textContent = currentText.substring(0, charIndex++);
+        if (charIndex > currentText.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 1000);
+            return;
+        }
+    } else {
+        document.getElementById("typing").textContent = currentText.substring(0, charIndex--);
+        if (charIndex === 0) {
+            isDeleting = false;
+            index++;
+        }
+    }
+    setTimeout(typeEffect, isDeleting ? 50 : 100);
+}
+
+typeEffect();
+</script>
+
+</body>
+</html>
