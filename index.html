@@ -84,11 +84,27 @@ footer{
     color:#777;
 }
 
+.social-icons{
+    display: flex;
+    justify-content: center;   /* center horizontally */
+    align-items: center;
+    gap: 25px;                 /* space between icons */
+    margin-top: 20px;
+}
+
+.social-icons a{
+    display: inline-flex;
+}
+
 .social-icons i{
-    font-size:28px;
-    margin:0 15px;
-    cursor:pointer;
-    color:#00ffcc;
+    font-size: 28px;
+    color: #00ffcc;
+    transition: 0.3s;
+}
+
+.social-icons i:hover{
+    transform: scale(1.2);
+    color: white;
 }
 
 /* LAYOUT */
