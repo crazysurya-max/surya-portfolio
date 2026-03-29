@@ -21,37 +21,44 @@ body{
     color:white;
 }
 
-section{
-    padding:80px 10%;
+/* TEXT SIZES */
+header h1{
+    font-size:56px;
+    font-weight:700;
+}
+
+.typing{
+    font-size:24px;
+    color:#00ffcc;
+    margin:20px 0;
 }
 
 h2{
+    font-size:36px;
     text-align:center;
     color:#00ffcc;
     margin-bottom:40px;
 }
 
-/* HERO */
-header{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-
-header h1{
-    font-size:50px;
-}
-
-.typing{
-    color:#00ffcc;
+.sub-heading{
     font-size:22px;
-    margin:20px 0;
+    margin:40px 0 15px;
+    color:#00ffcc;
+    text-align:left;
+}
+
+.card h3{
+    font-size:22px;
+}
+
+p{
+    font-size:16px;
+    line-height:1.6;
+    color:#ccc;
 }
 
 .btn{
+    font-size:16px;
     padding:12px 30px;
     background:#00ffcc;
     color:black;
@@ -61,7 +68,43 @@ header h1{
     font-weight:bold;
 }
 
-/* SERVICES */
+input,textarea{
+    font-size:15px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+}
+
+footer{
+    font-size:14px;
+    text-align:center;
+    padding:20px;
+    background:#111;
+    margin-top:50px;
+    color:#777;
+}
+
+.social-icons i{
+    font-size:28px;
+    margin:0 15px;
+    cursor:pointer;
+    color:#00ffcc;
+}
+
+/* LAYOUT */
+section{
+    padding:80px 10%;
+}
+
+header{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
 .services{
     display:flex;
     flex-wrap:wrap;
@@ -83,47 +126,41 @@ header h1{
     box-shadow:0 0 20px #00ffcc55;
 }
 
-/* GALLERY */
-.gallery {
-    column-count: 3;          /* number of columns */
-    column-gap: 15px;
+/* PINTEREST GALLERY */
+.gallery{
+    column-count:3;
+    column-gap:15px;
 }
 
-.gallery a {
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 15px;
+.gallery a{
+    display:inline-block;
+    width:100%;
+    margin-bottom:15px;
 }
 
-.gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    display: block;
-}
-@media (max-width: 900px) {
-    .gallery {
-        column-count: 2;
-    }
+.gallery img{
+    width:100%;
+    height:auto;
+    border-radius:10px;
+    display:block;
 }
 
-@media (max-width: 500px) {
-    .gallery {
-        column-count: 1;
-    }
-}
-.sub-heading{
-    margin-top:40px;
-    margin-bottom:20px;
-    color:#00ffcc;
-    text-align:left;
-}
-.cert-gallery img{
-    height:200px;
-    object-fit:contain;
+/* RESPONSIVE */
+@media (max-width:900px){
+    .gallery{ column-count:2; }
 }
 
-/* CASE STUDY */
+@media (max-width:500px){
+    .gallery{ column-count:1; }
+
+    header h1{ font-size:36px; }
+    .typing{ font-size:18px; }
+    h2{ font-size:28px; }
+    .sub-heading{ font-size:18px; }
+    p{ font-size:14px; }
+}
+
+/* CASE */
 .case{
     background:#1a1a1a;
     padding:30px;
@@ -140,29 +177,7 @@ form{
     gap:15px;
 }
 
-input,textarea{
-    padding:12px;
-    border:none;
-    border-radius:8px;
-}
-
-textarea{
-    resize:none;
-}
-
-.social-icons{
-    text-align:center;
-    margin-top:20px;
-}
-
-.social-icons i{
-    font-size:25px;
-    margin:0 15px;
-    cursor:pointer;
-    color:#00ffcc;
-}
-
-/* WHATSAPP FLOAT */
+/* WHATSAPP */
 .whatsapp{
     position:fixed;
     bottom:20px;
@@ -172,15 +187,6 @@ textarea{
     padding:15px;
     border-radius:50%;
     font-size:25px;
-}
-
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:20px;
-    background:#111;
-    margin-top:50px;
-    color:#777;
 }
 </style>
 </head>
@@ -210,97 +216,80 @@ footer{
         </div>
     </div>
 </section>
+
 <section>
     <h2>Portfolio Gallery</h2>
-     <!-- Posters -->
+
     <h3 class="sub-heading">Posters</h3>
     <div class="gallery">
-        <a href="images/design1.png" target="_blank">
-            <img src="images/design1.png" alt="Poster Design 1">
-        </a>
-        <a href="images/design2.png" target="_blank">
-            <img src="images/design2.png" alt="Poster Design 2">
-        </a>
-        <a href="images/design4.webp" target="_blank">
-            <img src="images/design4.webp" alt="Poster Design 4">
-        </a>
+        <a href="images/design1.png" target="_blank"><img src="images/design1.png"></a>
+        <a href="images/design2.png" target="_blank"><img src="images/design2.png"></a>
+        <a href="images/design4.webp" target="_blank"><img src="images/design4.webp"></a>
     </div>
-    <!-- Thumbnails -->
+
     <h3 class="sub-heading">Thumbnails</h3>
     <div class="gallery">
-        <a href="images/designs5.png" target="_blank">
-            <img src="images/design5.png" alt="Thumbnail1">
-        </a>
-        <a href="images/designs10.png" target="_blank">
-            <img src="images/design10.png" alt="Thumbnail2">
-        </a>
-        <a href="images/designs11.png" target="_blank">
-            <img src="images/design11.png" alt="Thumbnail3">
-          </a>
+        <a href="images/design5.png" target="_blank"><img src="images/design5.png"></a>
+        <a href="images/design10.png" target="_blank"><img src="images/design10.png"></a>
+        <a href="images/design11.png" target="_blank"><img src="images/design11.png"></a>
     </div>
-     <!-- Certifications -->
+
     <h3 class="sub-heading">Certifications</h3>
     <div class="gallery">
-        <a href="images/design6.png" target="_blank">
-            <img src="images/design6.png" alt="Certificate1">
-         </a>
-        <a href="images/design12.png" target="_blank">
-            <img src="images/design12.png" alt="Certificate2">
-        </a>
+        <a href="images/design6.png" target="_blank"><img src="images/design6.png"></a>
+        <a href="images/design12.png" target="_blank"><img src="images/design12.png"></a>
     </div>
-    <!--Ads campaigns-->
-    <h3 class="sub-heading">Ad compaigns</h3>
+
+    <h3 class="sub-heading">Ad Campaigns</h3>
     <div class="gallery">
-        <a href="images/design7.png" target="_blank">
-            <img src="images/design7.png" alt="Facebook Ads Creative">
-        </a>
+        <a href="images/design7.png" target="_blank"><img src="images/design7.png"></a>
     </div>
-</section>
-<section>
-  <h2>Video Projects</h2>
-  <div class="gallery">
-
-    <video width="300" controls>
-   <source src="videos/first.mp4" type="video/mp4">
-</video>
-
-<video width="300" controls>
-   <source src="videos/wedding.mp4" type="video/mp4">
-</video>
-<video width="300" controls>
-   <source src="videos/sivaji.mp4" type="video/mp4">
-</video>
-
-<video width="300" controls>
-   <source src="videos/nature1.mp4" type="video/mp4">
-</video>
-
-  </div>
 </section>
 
 <section>
-    <h2>Facebook Ads Case Study</h2>
-    <div class="case">
-        <p><strong>Client:</strong> Local Business</p>
-        <p><strong>Budget:</strong> ₹5,000</p>
-        <p><strong>Results:</strong> 120 Leads in 7 Days</p>
-        <p><strong>Cost Per Lead:</strong> ₹41</p>
-    </div>
+<h2>Video Projects</h2>
+<div class="gallery">
+
+<video width="100%" controls>
+<source src="videos/first.mp4" type="video/mp4">
+</video>
+
+<video width="100%" controls>
+<source src="videos/wedding.mp4" type="video/mp4">
+</video>
+
+<video width="100%" controls>
+<source src="videos/sivaji.mp4" type="video/mp4">
+</video>
+
+<video width="100%" controls>
+<source src="videos/nature1.mp4" type="video/mp4">
+</video>
+
+</div>
+</section>
+
+<section>
+<h2>Facebook Ads Case Study</h2>
+<div class="case">
+<p><strong>Client:</strong> Local Business</p>
+<p><strong>Budget:</strong> ₹5,000</p>
+<p><strong>Results:</strong> 120 Leads in 7 Days</p>
+<p><strong>Cost Per Lead:</strong> ₹41</p>
+</div>
 </section>
 
 <section id="contact">
-    <h2>Contact Me</h2>
+<h2>Contact Me</h2>
 
-    <!-- Replace YOUR_FORM_ID with your Formspree ID -->
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button class="btn" type="submit">Send Message</button>
-    </form>
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+<button class="btn" type="submit">Send Message</button>
+</form>
 
 <div class="social-icons">
-
 <a href="https://www.instagram.com/crazy_surya_9999" target="_blank">
 <i class="fab fa-instagram"></i>
 </a>
@@ -308,14 +297,12 @@ footer{
 <a href="https://www.linkedin.com/in/surya-teja-5137a43b5" target="_blank">
 <i class="fab fa-linkedin"></i>
 </a>
-
 </div>
+
 </section>
 
-<a href="https://wa.me/916303002932?text=Hi%20Surya%2C%20I%20am%20interested%20in%20your%20services." 
-   class="whatsapp" 
-   target="_blank">
-   <i class="fab fa-whatsapp"></i>
+<a href="https://wa.me/916303002932?text=Hi%20Surya%2C%20I%20am%20interested%20in%20your%20services." class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
 </a>
 
 <footer>
@@ -323,34 +310,29 @@ footer{
 </footer>
 
 <script>
-// Typing Effect
 const textArray = ["Digital Marketer", "Poster Designer", "Video Editor", "Facebook Ads Specialist"];
-let index = 0;
-let charIndex = 0;
-let currentText = "";
-let isDeleting = false;
+let index = 0, charIndex = 0, currentText = "", isDeleting = false;
 
-function typeEffect() {
-    if (index >= textArray.length) index = 0;
-    currentText = textArray[index];
+function typeEffect(){
+if(index >= textArray.length) index = 0;
+currentText = textArray[index];
 
-    if (!isDeleting) {
-        document.getElementById("typing").textContent = currentText.substring(0, charIndex++);
-        if (charIndex > currentText.length) {
-            isDeleting = true;
-            setTimeout(typeEffect, 1000);
-            return;
-        }
-    } else {
-        document.getElementById("typing").textContent = currentText.substring(0, charIndex--);
-        if (charIndex === 0) {
-            isDeleting = false;
-            index++;
-        }
-    }
-    setTimeout(typeEffect, isDeleting ? 50 : 100);
+if(!isDeleting){
+document.getElementById("typing").textContent = currentText.substring(0,charIndex++);
+if(charIndex > currentText.length){
+isDeleting = true;
+setTimeout(typeEffect,1000);
+return;
 }
-
+}else{
+document.getElementById("typing").textContent = currentText.substring(0,charIndex--);
+if(charIndex === 0){
+isDeleting = false;
+index++;
+}
+}
+setTimeout(typeEffect,isDeleting?50:100);
+}
 typeEffect();
 </script>
 
