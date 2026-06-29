@@ -693,6 +693,7 @@ section {
   width: 100%;
   display: block;
   border-radius: inherit;
+  pointer-events: none; /* card handles all clicks */
 }
 .video-overlay {
   position: absolute;
@@ -1518,8 +1519,8 @@ footer {
   </div>
 
   <div class="featured-videos reveal">
-    <div class="video-card">
-      <video preload="none" poster="" onclick="togglePlay(this)">
+    <div class="video-card" onclick="togglePlay(this)">
+      <video preload="metadata" data-src="videos/project1.mp4">
         <source src="videos/project1.mp4" type="video/mp4">
       </video>
       <div class="video-overlay">
@@ -1529,8 +1530,8 @@ footer {
       </div>
       <div class="video-play-btn"><i class="fa fa-play"></i></div>
     </div>
-    <div class="video-card">
-      <video preload="none" onclick="togglePlay(this)">
+    <div class="video-card" onclick="togglePlay(this)">
+      <video preload="metadata" data-src="videos/project2.mp4">
         <source src="videos/project2.mp4" type="video/mp4">
       </video>
       <div class="video-overlay">
@@ -1540,8 +1541,8 @@ footer {
       </div>
       <div class="video-play-btn"><i class="fa fa-play"></i></div>
     </div>
-    <div class="video-card">
-      <video preload="none" onclick="togglePlay(this)">
+    <div class="video-card" onclick="togglePlay(this)">
+      <video preload="metadata" data-src="videos/project3.mp4">
         <source src="videos/project3.mp4" type="video/mp4">
       </video>
       <div class="video-overlay">
@@ -1554,8 +1555,8 @@ footer {
   </div>
 
   <div class="minor-videos reveal">
-    <div class="video-card minor">
-      <video preload="none" onclick="togglePlay(this)">
+    <div class="video-card minor" onclick="togglePlay(this)">
+      <video preload="metadata" data-src="videos/first.mp4">
         <source src="videos/first.mp4" type="video/mp4">
       </video>
       <div class="video-overlay">
@@ -1564,8 +1565,8 @@ footer {
       </div>
       <div class="video-play-btn"><i class="fa fa-play"></i></div>
     </div>
-    <div class="video-card minor">
-      <video preload="none" onclick="togglePlay(this)">
+    <div class="video-card minor" onclick="togglePlay(this)">
+      <video preload="metadata" data-src="videos/wedding.mp4">
         <source src="videos/wedding.mp4" type="video/mp4">
       </video>
       <div class="video-overlay">
@@ -1574,8 +1575,8 @@ footer {
       </div>
       <div class="video-play-btn"><i class="fa fa-play"></i></div>
     </div>
-    <div class="video-card minor">
-      <video preload="none" onclick="togglePlay(this)">
+    <div class="video-card minor" onclick="togglePlay(this)">
+      <video preload="metadata" data-src="videos/sivaji.mp4">
         <source src="videos/sivaji.mp4" type="video/mp4">
       </video>
       <div class="video-overlay">
@@ -1584,8 +1585,8 @@ footer {
       </div>
       <div class="video-play-btn"><i class="fa fa-play"></i></div>
     </div>
-    <div class="video-card minor">
-      <video preload="none" onclick="togglePlay(this)">
+    <div class="video-card minor" onclick="togglePlay(this)">
+      <video preload="metadata" data-src="videos/nature1.mp4">
         <source src="videos/nature1.mp4" type="video/mp4">
       </video>
       <div class="video-overlay">
@@ -2069,22 +2070,66 @@ function placeholderHTML(label, icon) {
 }
 
 /* =====================================================
-   VIDEO TOGGLE PLAY
+   VIDEO — AUTO THUMBNAIL + PLAY/PAUSE
 ===================================================== */
-function togglePlay(video) {
-  const card = video.closest('.video-card');
-  const btn  = card.querySelector('.video-play-btn i');
+
+// Auto-generate poster thumbnails by seeking each video to 1s,
+// drawing a canvas frame, then setting it as the poster attribute.
+function generateThumbnail(video) {
+  video.currentTime = 1;
+  video.addEventListener('seeked', function onSeeked() {
+    video.removeEventListener('seeked', onSeeked);
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width  = video.videoWidth  || 640;
+      canvas.height = video.videoHeight || 360;
+      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+      video.poster = canvas.toDataURL('image/jpeg', 0.85);
+      video.currentTime = 0; // reset back to start
+    } catch (e) {
+      // cross-origin or decode error — leave poster blank (dark card still looks fine)
+    }
+  }, { once: true });
+}
+
+// Run thumbnail generation for every video on page
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.video-card video').forEach(video => {
+    // preload="metadata" loads enough to get dimensions + first frame
+    if (video.readyState >= 1) {
+      generateThumbnail(video);
+    } else {
+      video.addEventListener('loadedmetadata', () => generateThumbnail(video), { once: true });
+    }
+    // Stop click events from bubbling up from <video> itself so the card's
+    // onclick handles everything cleanly.
+    video.addEventListener('click', e => e.stopPropagation());
+  });
+});
+
+// Called on the card element (not the video element)
+function togglePlay(card) {
+  const video = card.querySelector('video');
+  const btn   = card.querySelector('.video-play-btn i');
+
   if (video.paused) {
-    // Pause all others
-    document.querySelectorAll('.video-card video').forEach(v => {
-      if (v !== video) { v.pause(); const b = v.closest('.video-card').querySelector('.video-play-btn i'); if (b) { b.className = 'fa fa-play'; } }
+    // Pause ALL other videos first
+    document.querySelectorAll('.video-card').forEach(c => {
+      if (c === card) return;
+      const v = c.querySelector('video');
+      const b = c.querySelector('.video-play-btn i');
+      if (v && !v.paused) { v.pause(); }
+      if (b) b.className = 'fa fa-play';
     });
-    video.play();
+    video.play().catch(() => {}); // catch autoplay policy errors silently
     if (btn) btn.className = 'fa fa-pause';
   } else {
     video.pause();
     if (btn) btn.className = 'fa fa-play';
   }
+
+  // Keep icon in sync when video ends naturally
+  video.onended = () => { if (btn) btn.className = 'fa fa-play'; };
 }
 
 /* =====================================================
